@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SampleApp</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="display_input_text_before_page">Display input text before page</string>
+</resources>
