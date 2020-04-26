@@ -15,17 +15,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/todoListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ScrollView>
+            android:layout_weight="1" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/sendTodoLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="8">
@@ -41,7 +39,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
                     android:layout_marginBottom="16dp"
                     android:filterTouchesWhenObscured="false"
                     android:inputType="text"
