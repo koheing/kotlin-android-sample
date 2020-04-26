@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainActivityViewModel: MainActivityViewModel
 
-    private lateinit var todoListRecyclerView: RecyclerView
     private lateinit var todoListAdapter: RecyclerView.Adapter<*>
     private lateinit var todoListManager: RecyclerView.LayoutManager
 
@@ -56,10 +55,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializeTodoListView() {
-        todoListRecyclerView = todoListView
         todoListManager = LinearLayoutManager(this)
         todoListAdapter = TodoListViewAdapter()
-        todoListRecyclerView.apply {
+        todoListView.apply {
             this.layoutManager = todoListManager
             this.adapter = todoListAdapter
         }
