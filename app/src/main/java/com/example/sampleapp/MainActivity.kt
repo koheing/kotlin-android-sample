@@ -1,17 +1,17 @@
 package com.example.sampleapp
 
-import android.content.Intent
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampleapp.models.Todo
 import kotlinx.android.synthetic.main.activity_main.*
+import android.view.inputmethod.InputMethodManager
 
 const val EXTRA_MESSAGE = "com.example.sampleapp"
 
@@ -36,9 +36,15 @@ class MainActivity : AppCompatActivity() {
         initializeTodoListView()
     }
 
+
     fun sendMessage(view: View) {
         val message = messageView.text.toString()
         mainActivityViewModel.addTodo(message)
+
+        messageView.clearFocus()
+
+        val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(messageView.windowToken, 0)
     }
 
     private fun bindTodo(todoList: List<Todo>) {
