@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var todoListAdapter: RecyclerView.Adapter<*>
     private lateinit var todoListManager: RecyclerView.LayoutManager
 
+    private lateinit var inputMethodManager: InputMethodManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity() {
             .get(MainActivityViewModel::class.java)
 
         mainActivityViewModel.todoListLiveData.observe(this, Observer { bindTodo(it) })
+
+        inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
 
         initializeTodoListView()
     }
@@ -43,8 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         messageView.clearFocus()
 
-        val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(messageView.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(messageView.windowToken, 0)
     }
 
     private fun bindTodo(todoList: List<Todo>) {
