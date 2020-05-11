@@ -40,8 +40,7 @@ class MainActivity : AppCompatActivity() {
         initializeTodoListView()
     }
 
-
-    fun sendMessage(view: View) {
+    fun sendMessage(v: View) {
         val message = messageView.text.toString()
         mainActivityViewModel.addTodo(message)
 
@@ -56,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val adapter = todoListView.adapter as TodoListViewAdapter
+        adapter.setOnClickListener { println(it) }
         val diff = DiffUtil.calculateDiff(CheckDiffInTodoList(adapter.todoList, todoList), true)
 
         adapter.todoList = todoList

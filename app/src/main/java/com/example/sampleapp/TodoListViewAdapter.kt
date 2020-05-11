@@ -2,9 +2,11 @@ package com.example.sampleapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sampleapp.models.Todo
+import kotlinx.android.synthetic.main.todo_list_item.view.*
 
 class TodoListViewAdapter(): RecyclerView.Adapter<TodoViewHolder>() {
 
@@ -14,11 +16,14 @@ class TodoListViewAdapter(): RecyclerView.Adapter<TodoViewHolder>() {
 
     var todoList: List<Todo> = emptyList()
 
+    private lateinit var onClickAction: (message: String) -> Unit
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.todo_list_item, parent, false)
 
+        view.setOnClickListener { onClickAction(it.textView.text.toString()) }
         return TodoViewHolder(view)
     }
 
@@ -43,4 +48,8 @@ class TodoListViewAdapter(): RecyclerView.Adapter<TodoViewHolder>() {
     }
 
     override fun getItemCount(): Int = todoList.count()
+
+    fun setOnClickListener(onClickAction: (message: String) -> Unit) {
+        this.onClickAction = onClickAction
+    }
 }
