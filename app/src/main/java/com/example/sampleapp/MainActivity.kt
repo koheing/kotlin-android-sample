@@ -1,6 +1,7 @@
 package com.example.sampleapp
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -55,12 +56,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         val adapter = todoListView.adapter as TodoListViewAdapter
-        adapter.setOnClickListener { println(it) }
+        adapter.setOnClickListener{ moveTo(it) }
         val diff = DiffUtil.calculateDiff(CheckDiffInTodoList(adapter.todoList, todoList), true)
 
         adapter.todoList = todoList
 
         diff.dispatchUpdatesTo(adapter)
+    }
+
+    private fun moveTo(message: String) {
+        val intent = Intent(this, DisplayMessageActivity::class.java).apply {
+            putExtra(EXTRA_MESSAGE, message)
+        }
+
+        startActivity(intent)
     }
 
     private fun initializeTodoListView() {
